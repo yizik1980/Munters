@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
 import { Book } from './../../model/book';
 import { BookService } from './../../service/book.service';
 
@@ -23,13 +21,13 @@ export class BookListComponent implements OnInit {
     })
   }
 
-
+  updateBook(book: Book) {
+    book.isNew = false;
+    this.bookService.showCoveTrigger.next(book);
+  }
   filterItem($event) {
     const reg = new RegExp($event.target.value);
     this.books = this.fullBookList.filter(book => reg.test(book.bookName) || reg.test(book.author))
-  }
-  showBook(book: Book) {
-    this.bookService.showCoveTrigger.next(book);
   }
   deleteBook(book: Book) {
     this.bookService.DeleteBook(book.id).subscribe(res => {

@@ -12,7 +12,6 @@
                     <th scope="col">Publication Date</th>
                     <th scope="col"></th>
                     <th scope="col"></th>
-                    <th scope="col"></th>
                 </tr>
             </thead>
             <tbody>
@@ -22,7 +21,6 @@
                     <td>{{ book.author }}</td>
                     <td>{{ book.PublicationDate | date: 'short' }}</td>
                     <td><span><a (click)="updateBook(book)"><i class="pen"></i></a></span> </td>
-                    <td><span><a (click)="showBook(book)"><i class="eye"></i></a></span> </td>
                     <td><span><a (click)="deleteBook(book)"><i class="del"></i></a></span> </td>
                 </tr>
             </tbody>

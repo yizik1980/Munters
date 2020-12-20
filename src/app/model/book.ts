@@ -1,4 +1,7 @@
 export class Book {
+	constructor() {
+		this.isNew = true;
+	}
 	id: number;
 	catalogNumber: number;
 	bookName: string;
@@ -6,6 +9,7 @@ export class Book {
 	PublicationDate: Date;
 	coverPhoto: string | ArrayBuffer;
 	fileName: string;
+	isNew: boolean;
 }
 
 export class errorModel extends Book {

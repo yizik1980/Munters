@@ -4,18 +4,20 @@
     <div class="form-group relative">
         <label for="name">Book Name</label>
         <span class="error" *ngIf="error.bookName">{{error.bookName}}</span>
-        <input type="text" class="form-control" id="name" required [(ngModel)]="book.bookName" name="name"
+        <input type="text" class="form-control" (focus)="clear()" id="name" required [(ngModel)]="book.bookName" name="name"
             #name="ngModel">
     </div>
     <div class="form-group relative">
         <label for="name">Author Name</label>
-        <span class="error" *ngIf="error.bookName">{{error.bookName}}</span>
-        <input type="text" class="form-control" id="author" required [(ngModel)]="book.author" name="author"
+        <span class="error" *ngIf="error.author">{{error.author}}</span>
+        <input type="text" class="form-control" (focus)="clear()" id="author" required [(ngModel)]="book.author" name="author"
             #author="ngModel">
     </div>
     <div class="form-group relative">
         <label for="coverPhoto">upload coverPhoto</label>
-        <input type="file" class="form-control" placeholder="{{book.fileName || ''}}" (change)="uploadFile($event)"
+        <span class="error" *ngIf="error.coverPhoto">{{error.coverPhoto}}</span>
+        <input type="file" class="form-control" (focus)="clear()" placeholder="{{book.fileName || ''}}"
+            (change)="uploadFile($event)"
             id="coverPhoto" required name="coverPhoto">
     </div>
     <div class="form-group relative">

@@ -27,7 +27,7 @@ export class BookHandlerComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.bookSubscribe = this.bookService.showCoveTrigger.subscribe(book => {
       this.book = book;
-      this.isNew = false
+      this.isNew = book.isNew;
     });
   }
   saveBook() {
@@ -41,7 +41,6 @@ export class BookHandlerComponent implements OnInit, OnDestroy {
   }
   updateBook() {
     if (this.validationService.validate(this.book)) {
-      this.book.catalogNumber = Math.floor(Math.random() * 10666600);
       this.bookService.updateBook(this.book).subscribe(result => {
         this.bookService.getBooks();
       });
@@ -52,18 +51,24 @@ export class BookHandlerComponent implements OnInit, OnDestroy {
 
 
   uploadFile($event) {
+    this.error = new errorModel();
     const inputValue = $event.target;
     const file: File = inputValue.files[0];
-    if (file.size < 20000) {
+    if (file.size < 50000) {
       const Reader: FileReader = new FileReader();
       this.book.fileName = file.name;
       Reader.onloadend = (e) => {
         this.book.coverPhoto = e.target.result.toString();
+        this.bookService.showCoveTrigger.next(this.book);
       }
       Reader.readAsDataURL(file);
     } else {
-      this.error.coverPhoto = 'The file is too large'
+      this.error.coverPhoto = 'The file is too large';
+      inputValue.value = '';
     }
 
+  }
+  clear() {
+    this.error = new errorModel();
   }
 }
