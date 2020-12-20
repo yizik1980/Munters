@@ -56,6 +56,7 @@ export class BookHandlerComponent implements OnInit, OnDestroy {
     const file: File = inputValue.files[0];
     if (file.size < 20000) {
       const Reader: FileReader = new FileReader();
+      this.book.fileName = file.name;
       Reader.onloadend = (e) => {
         this.book.coverPhoto = e.target.result.toString();
       }

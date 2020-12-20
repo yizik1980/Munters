@@ -23,9 +23,7 @@ export class BookListComponent implements OnInit {
     })
   }
 
-  updateBook(book) {
-    this.bookService.isEditClicked(true, book);
-  }
+
   filterItem($event) {
     const reg = new RegExp($event.target.value);
     this.books = this.fullBookList.filter(book => reg.test(book.bookName) || reg.test(book.author))
@@ -36,6 +34,7 @@ export class BookListComponent implements OnInit {
   deleteBook(book: Book) {
     this.bookService.DeleteBook(book.id).subscribe(res => {
       this.bookService.getBooks();
+      this.bookService.showCoveTrigger.next(new Book());
     });
   }
 

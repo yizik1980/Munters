@@ -5,6 +5,7 @@ export class Book {
 	author: string;
 	PublicationDate: Date;
 	coverPhoto: string | ArrayBuffer;
+	fileName: string;
 }
 
 export class errorModel extends Book {
