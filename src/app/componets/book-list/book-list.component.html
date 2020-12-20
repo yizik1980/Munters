@@ -1,0 +1,31 @@
+<div class="card my-6">
+    <div class="card-body">
+        <div class="form-group">
+            <input class="form-control" placeholder="look for..." (input)="filterItem($event)" />
+        </div>
+        <table class="table table-bordered table-striped">
+            <thead class="thead-dark">
+                <tr class="pointer">
+                    <th scope="col">catalog Number</th>
+                    <th scope="col">Book Name</th>
+                    <th scope="col">Author Name</th>
+                    <th scope="col">Publication Date</th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let book of books" class="pointer">
+                    <td>{{ book.catalogNumber }}</td>
+                    <td>{{ book.bookName }}</td>
+                    <td>{{ book.author }}</td>
+                    <td>{{ book.PublicationDate | date: 'short' }}</td>
+                    <td><span><a (click)="updateBook(book)"><i class="pen"></i></a></span> </td>
+                    <td><span><a (click)="showBook(book)"><i class="eye"></i></a></span> </td>
+                    <td><span><a (click)="deleteBook(book)"><i class="del"></i></a></span> </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
